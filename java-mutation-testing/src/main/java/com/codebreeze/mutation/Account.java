@@ -13,6 +13,7 @@ public class Account {
         //Preconditions.checkNotNull(username, "user name cannot be null");
         checkArgument(username.length() > 6, "username cannot be less than 6 letters, but was [%s]", username);
         checkArgument(initialBalance > 5.0, "initial balance %s cannot be less than 5.0");
+
         this.username = username;
         this.balance = initialBalance;
     }
