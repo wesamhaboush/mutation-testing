@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8"/>
+        <meta data-mutation-stats="%7B%22all%22:20,%22killed%22:15,%22survived%22:5,%22ignored%22:0,%22untested%22:0,%22success%22:15,%22successRate%22:%2275.0%22,%22killedRate%22:%2275.0%22,%22survivedRate%22:%2225.0%22,%22ignoredRate%22:%220.0%22,%22untestedRate%22:%220.0%22%7D"/>
+        <title>js - Mutation test results</title>
+        <style type="text/css">
+    html, body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Helvetica Neue', 'Helvetica', 'Verdana', 'Arial', sans-serif;
+        font-size: 14px;
+    }
+
+    header, nav, main, footer {
+        display: block;
+        padding: 10px;
+    }
+
+    header {
+        background-color: #fff5a0;
+        border-bottom: 1px solid #ddd130;
+    }
+
+    header.survived {
+        border-bottom-color: #b46767;
+    }
+
+    header.killed {
+        border-bottom-color: #516948;
+    }
+
+    header h1 {
+        font-size: 18px;
+        font-weight: normal;
+    }
+
+    header h1 .fileName {
+        font-weight: bold;
+    }
+
+    #mutationStats {
+        margin-top: 10px;
+    }
+
+    .stat {
+        display: inline-block;
+        width: 250px;
+    }
+
+    .stat .statValue {
+        border: 1px solid black;
+        padding: 4px;
+        background-color: white;
+        font-weight: bold;
+    }
+
+    .stat .statValue small {
+        color: #666;
+        font-weight: normal;
+        font-size: 11px;
+    }
+
+    nav {
+        background-color: #ffe87c;
+        border-bottom: 1px solid #b49d5e;
+    }
+
+    nav .link {
+        color: black;
+        text-decoration: underline;
+    }
+
+    footer {
+        background-color: #ddd;
+        border-top: 1px solid #aaa;
+    }
+
+    footer p {
+        margin: 0;
+    }
+
+    .killed {
+        background-color: #b5d592;
+    }
+
+    .survived {
+        background-color: #fc8c84;
+    }
+
+    .neutral {
+        background-color: #ffe87c;
+    }
+
+    #toggleKilledMutations {
+    background-color: #eee;
+    border: 1px solid #666;
+    padding: 6px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#toggleKilledMutations:hover {
+    background-color: #aaa;
+}
+#toggleKilledMutations:active {
+    background-color: #666;
+    border-color: #eee;
+}
+
+#source {
+    font-family: 'Consolas', 'Courier New', 'Lucida Sans Typewriter', monospace;
+    white-space: pre;
+}
+
+#mutations {
+    border-collapse: collapse;
+}
+
+#mutations th, #mutations td {
+    padding: 5px 15px;
+    border: 1px solid #666;
+}
+
+#mutations th {
+    background-color: #eee;
+    font-weight: normal;
+    text-align: left;
+}
+
+#popup {
+    position: fixed;
+    border: solid 1px black;
+    padding: 3px;
+    display: none;
+}
+
+#popup.show {
+    display: block;
+}
+
+code .killed, code .survived {
+    border: solid 1px white;
+}
+
+</style>
+
+        <script type="text/javascript">
+    function onLoad() {
+    each(document.getElementsByClassName('code'), function(element) {
+        element.addEventListener('mouseover', onMouseOver, false);
+        element.addEventListener('mousemove', onMouseMove, false);
+        element.addEventListener('mouseout', onMouseOut, false);
+    });
+}
+
+function each(list, fn, thisArg) {
+    Array.prototype.forEach.call(list, fn, thisArg);
+}
+
+function onMouseOver(event) {
+    var popup = document.getElementById('popup');
+    addMutations(popup, event.target);
+    setPopupPosition(popup, event);
+    popup.classList.add("show");
+}
+
+function onMouseMove(event) {
+    setPopupPosition(document.getElementById('popup'), event);
+}
+
+function onMouseOut() {
+    document.getElementById('popup').classList.remove('show');
+}
+
+function addMutations(popup, target) {
+    var mutationEl;
+
+    each(target.classList, function(_class) {
+        if (_class.indexOf('mutation_') > -1) {
+            mutationEl = document.getElementById(_class);
+            if (Array.prototype.indexOf.call(mutationEl.classList, 'killed') > -1) {
+                popup.classList.add('killed');
+                popup.classList.remove('survived');
+            } else {
+                popup.classList.add('survived');
+                popup.classList.remove('killed');
+            }
+            popup.classList.add(mutationEl.classList);
+            popup.innerHTML = mutationEl.innerHTML;
+        }
+    });
+}
+
+var showKilledMutations = true;
+function toggleKilledMutations() {
+    showKilledMutations = !showKilledMutations;
+
+    if(showKilledMutations) {
+        document.querySelector('#toggleKilledMutations').innerHTML = 'Hide killed mutations';
+        each(document.querySelectorAll('.code.killed'), function(e) {
+            e.style.backgroundColor = '';
+        });
+        each(document.querySelectorAll('#mutations .killed'), function(e) {
+            e.style.display = '';
+        });
+    } else {
+        document.querySelector('#toggleKilledMutations').innerHTML = 'Show killed mutations';
+        each(document.querySelectorAll('.code.killed'), function(e) {
+            e.style.backgroundColor = 'white';
+        });
+        each(document.querySelectorAll('#mutations .killed'), function(e) {
+            e.style.display = 'none';
+        });
+    }
+}
+
+function setPopupPosition(popup, event) {
+    var top = event.clientY,
+        left = event.clientX + 10;
+
+    popup.setAttribute('style', 'top:' + top + 'px;left:' + left + 'px;');
+}
+
+window.onload = onLoad;
+
+</script>
+    </head>
+
+    <body>
+        <header class="survived">
+            <h1>
+                Mutation test results for
+                <span class="fileName">
+                        js
+                </span>
+            </h1>
+
+            <section id="mutationStats">
+                <div class="stat">
+                    Success rate:&nbsp;
+                    <span class="statValue">
+                        75.0%&nbsp;
+                        <small>
+                            (15 / 20)
+                        </small>
+                    </span>
+                </div>
+                <div class="stat">
+                    Survived:&nbsp;
+                    <span class="statValue">
+                        25.0%&nbsp;
+                        <small>
+                            (5 / 20)
+                        </small>
+                    </span>
+                </div>
+                <div class="stat">
+                    Ignored:&nbsp;
+                    <span class="statValue">
+                        0.0%&nbsp;
+                        <small>
+                            (0 / 20)
+                        </small>
+                    </span>
+                </div>
+                <div class="stat">
+                    Untested:&nbsp;
+                    <span class="statValue">
+                        0.0%&nbsp;
+                        <small>
+                            (0 / 20)
+                        </small>
+                    </span>
+                </div>
+            </section>
+        </header>
+
+        <nav><a class="link " href="../grunt-mutation-testing/index.html">grunt-mutation-testing</a> >> js</nav>
+
+        <main>
+            <section>
+    <button id="toggleKilledMutations" onclick="toggleKilledMutations()">Hide killed mutations</button>
+</section>
+
+<section>
+    <code id="source"><ol><li><span class="code killed mutation_2_0_490">module.exports = function() {</span></li><li><span class="code killed mutation_2_0_490">    <span class="code survived mutation_3_34_59">var userName = undefined;</span></span></li><li><span class="code killed mutation_2_0_490">    <span class="code killed mutation_4_64_80">var balance = <span class="code survived mutation_10_78_79">0</span>;</span></span></li><li><span class="code killed mutation_2_0_490">    <span class="code survived mutation_5_85_144">this.getUsername = function(){</span></span></li><li><span class="code survived mutation_5_85_144"><span class="code killed mutation_2_0_490">	    <span class="code survived mutation_11_121_137">return userName;</span></span></span></li><li><span class="code survived mutation_5_85_144"><span class="code killed mutation_2_0_490">    };</span></span></li><li><span class="code killed mutation_2_0_490">    <span class="code killed mutation_6_149_210">this.getBalance = function() {</span></span></li><li><span class="code killed mutation_6_149_210"><span class="code killed mutation_2_0_490">        <span class="code killed mutation_12_188_203">return balance;</span></span></span></li><li><span class="code killed mutation_6_149_210"><span class="code killed mutation_2_0_490">    };</span></span></li><li><span class="code killed mutation_2_0_490">    <span class="code killed mutation_7_215_282">this.deposit = function(amount) {</span></span></li><li><span class="code killed mutation_7_215_282"><span class="code killed mutation_2_0_490">        <span class="code killed mutation_13_257_275">balance += amount;</span></span></span></li><li><span class="code killed mutation_7_215_282"><span class="code killed mutation_2_0_490">    };</span></span></li><li><span class="code killed mutation_2_0_490">    <span class="code killed mutation_8_287_470">this.withdraw = function(amount) {</span></span></li><li><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">        <span class="code killed mutation_14_330_463">if (balance<span class="code killed mutation_16_341_345"><span class="code survived mutation_15_341_345"> >= </span></span>amount) {</span></span></span></li><li><span class="code killed mutation_14_330_463"><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">            <span class="code killed mutation_17_367_385">balance -= amount;</span></span></span></span></li><li><span class="code killed mutation_14_330_463"><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">            <span class="code killed mutation_18_398_410">return <span class="code killed mutation_19_405_409">true</span>;</span></span></span></span></li><li><span class="code killed mutation_14_330_463"><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">        } else {</span></span></span></li><li><span class="code killed mutation_14_330_463"><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">            <span class="code killed mutation_20_440_453">return <span class="code killed mutation_21_447_452">false</span>;</span></span></span></span></li><li><span class="code killed mutation_14_330_463"><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">        }</span></span></span></li><li><span class="code killed mutation_8_287_470"><span class="code killed mutation_2_0_490">    };</span></span></li><li><span class="code killed mutation_2_0_490">    <span class="code killed mutation_9_475_487">return this;</span></span></li><li><span class="code killed mutation_2_0_490">};</span></li><li></li></ol></code>
+</section>
+
+<section>
+    <h2>Mutations</h2>
+        <table id="mutations">
+            <thead>
+            <tr>
+                <th>Mutation</th>
+                <th>Result</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="killed"><td id="mutation_2_0_490" class="killed">js:1:1 Removed module.exports = function() { var userName = undefined; var balance = 0; this.getUsername = function(){ return userName; }; this.getBalance = function() { return balance; }; this.deposit = function(amount) { balance += amount; }; this.withdraw = function(amount) { if (balance &gt;= amount) { balance -= amount; return true; } else { return false; } }; return this; }; -&gt; KILLED</td><td>killed</td></tr><tr class="survived"><td id="mutation_3_34_59" class="survived">js:2:5 Removed var userName = undefined; -&gt; SURVIVED</td><td>survived</td></tr><tr class="killed"><td id="mutation_4_64_80" class="killed">js:3:5 Removed var balance = 0; -&gt; KILLED</td><td>killed</td></tr><tr class="survived"><td id="mutation_10_78_79" class="survived">js:3:19 Replaced 0 with 1 -&gt; SURVIVED</td><td>survived</td></tr><tr class="survived"><td id="mutation_5_85_144" class="survived">js:4:5 Removed this.getUsername = function(){ return userName; }; -&gt; SURVIVED</td><td>survived</td></tr><tr class="survived"><td id="mutation_11_121_137" class="survived">js:5:6 Removed return userName; -&gt; SURVIVED</td><td>survived</td></tr><tr class="killed"><td id="mutation_6_149_210" class="killed">js:7:5 Removed this.getBalance = function() { return balance; }; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_12_188_203" class="killed">js:8:9 Removed return balance; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_7_215_282" class="killed">js:10:5 Removed this.deposit = function(amount) { balance += amount; }; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_13_257_275" class="killed">js:11:9 Removed balance += amount; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_8_287_470" class="killed">js:13:5 Removed this.withdraw = function(amount) { if (balance &gt;= amount) { balance -= amount; return true; } else { return false; } }; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_16_341_345" class="killed">js:14:20 Replaced  &gt;=  with &lt; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_14_330_463" class="killed">js:14:9 Removed if (balance &gt;= amount) { balance -= amount; return true; } else { return false; } -&gt; KILLED</td><td>killed</td></tr><tr class="survived"><td id="mutation_15_341_345" class="survived">js:14:20 Replaced  &gt;=  with &gt; -&gt; SURVIVED</td><td>survived</td></tr><tr class="killed"><td id="mutation_17_367_385" class="killed">js:15:13 Removed balance -= amount; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_18_398_410" class="killed">js:16:13 Removed return true; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_19_405_409" class="killed">js:16:20 Replaced true with false -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_21_447_452" class="killed">js:18:20 Replaced false with true -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_20_440_453" class="killed">js:18:13 Removed return false; -&gt; KILLED</td><td>killed</td></tr><tr class="killed"><td id="mutation_9_475_487" class="killed">js:21:5 Removed return this; -&gt; KILLED</td><td>killed</td></tr>
+            </tbody>
+        </table>
+</section>
+
+<div id="popup" aria-hidden="true"></div>
+
+        </main>
+
+        <footer>
+            <p>Report generated by <a class="brand" href="https://www.npmjs.com/package/grunt-mutation-testing">grunt-mutation-testing</a> on 10/21/2015, 9:36:50 PM.</p>
+        </footer>
+    </body>
+</html>

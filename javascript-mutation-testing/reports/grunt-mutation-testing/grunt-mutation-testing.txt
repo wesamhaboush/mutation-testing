@@ -1,0 +1,6 @@
+js:2:5 Removed var userName = undefined; -> SURVIVED
+js:4:5 Removed this.getUsername = function(){ return userName; }; -> SURVIVED
+js:3:19 Replaced 0 with 1 -> SURVIVED
+js:5:6 Removed return userName; -> SURVIVED
+js:14:20 Replaced  >=  with > -> SURVIVED
+15 of 20 unignored mutations are tested (75%).
