@@ -1,0 +1,18 @@
+
+
+  Account Specs:
+    ✓ should not be able to create account with too short a user name
+    ✓ should not be able to create account with no name
+    ✓ should not be able to create account with 6 letter name
+    ✓ should be able to create account with valid name
+    ✓ should not be able to create account with little money
+    ✓ should not be able to deposit into an account more than max
+    ✓ should not be able to deposit into an account an amount equal to max
+    ✓ should be able to deposit into an account an amount less than max
+    ✓ should not be able to withdraw from an account more than balance
+    ✓ should be able to withdraw from an account all the balance
+    ✓ should be able to withdraw from an account less than the balance
+
+
+  11 passing (14ms)
+
