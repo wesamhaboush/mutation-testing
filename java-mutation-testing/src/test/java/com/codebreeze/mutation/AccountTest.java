@@ -28,7 +28,7 @@ public class AccountTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_be_able_to_create_account_with_little_money(){
+    public void should_not_be_able_to_create_account_with_little_money(){
         new Account("willbe7", 5.0);
     }
 
@@ -38,7 +38,7 @@ public class AccountTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_not_be_able_to_deposit_equal_to_than_max(){
+    public void should_not_be_able_to_deposit_equal_to_max(){
         new Account("happy puppy", 6.0).deposit(100000.0);
     }
 
