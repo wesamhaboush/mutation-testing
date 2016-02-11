@@ -1,5 +1,6 @@
-package com.codebreeze.mutation;
+package com.codebreeze.mutation.account;
 
+import com.codebreeze.mutation.account.Account;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

@@ -1,4 +1,4 @@
-package com.codebreeze.mutation;
+package com.codebreeze.mutation.account;
 
 import static com.google.common.base.Preconditions.checkArgument;
 
