@@ -32,7 +32,8 @@
   },
   "homepage": "https://github.com/wesamhaboush/mutation-testing#readme",
   "dependencies": {
-    "conditional": "^5.3.0"
+    "conditional": "^5.3.0",
+    "underscore": "^1.8.3"
   },
   "devDependencies": {
     "blanket": "^1.1.7",
