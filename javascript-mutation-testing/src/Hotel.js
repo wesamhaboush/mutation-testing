@@ -18,7 +18,6 @@ var reservation = function (number, roomNumber, from, to) {
 };
 
 var hotel = function (roomCount) {
-    console.log(roomCount);
     checkArgument((typeof roomCount === 'number') && roomCount > 0, "room count in a hotel must be positive integer");
     var makeRooms = function () {
         var rooms = [];
