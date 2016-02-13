@@ -1,27 +1,29 @@
 var checkArgument = require('conditional').checkArgument;
 var _ = require('underscore');
 
-var Room = (function (number) {
-    return {
+var room = function (number) {
+    return Object.freeze({
         number: number
-    };
-})(number);
+    });
+};
 
-var Reservation = (function (number, roomNumber, from, to, creationTime) {
-    return {
+var reservation = function (number, roomNumber, from, to) {
+    return Object.freeze({
         number: number,
         roomNumber: roomNumber,
         from: from,
         to: to,
         creationTime: new Date()
-    };
-})(number, roomNumber, from, to);
+    });
+};
 
-var Hotel = (function (roomCount) {
+var hotel = function (roomCount) {
+    console.log(roomCount);
+    checkArgument((typeof roomCount === 'number') && roomCount > 0, "room count in a hotel must be positive integer");
     var makeRooms = function () {
         var rooms = [];
         _.each(_.range(0, roomCount), function (number) {
-            rooms.push(Room(number))
+            rooms.push(room(number))
         });
         return rooms;
     };
@@ -31,7 +33,7 @@ var Hotel = (function (roomCount) {
 
     var hasNumber = function (number) {
         return function (r) {
-            return r.getNumber() === number;
+            return r.number === number;
         };
     };
 
@@ -46,9 +48,9 @@ var Hotel = (function (roomCount) {
     var reserve = function (roomNumber, from, to) {
         checkArgument(isAvailable(roomNumber), "room is already reserved");
         makeUnavailable(roomNumber);
-        var reservation = Reservation(roomNumber, from, to);
-        reservations.push(reservation);
-        return reservation;
+        var res = reservation('1', roomNumber, from, to);
+        reservations.push(res);
+        return res;
     };
 
     var cancel = function (reservationNumber) {
@@ -58,8 +60,10 @@ var Hotel = (function (roomCount) {
         availableRooms.push(Room(reservation.roomNumber));
     };
 
-    return {
+    return Object.freeze({
         cancel: cancel,
         reserve: reserve
-    };
-})(roomCount || 10);
+    });
+};
+
+module.exports = hotel;

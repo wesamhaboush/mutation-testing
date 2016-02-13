@@ -4,7 +4,9 @@
   "description": "trying mutation testing with javascript",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
+    "test": "mocha"
+  },
+  "config": {
     "blanket": {
       "pattern": "src",
       "data-cover-never": "node_modules"

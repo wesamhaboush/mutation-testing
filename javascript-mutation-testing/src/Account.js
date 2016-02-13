@@ -1,6 +1,6 @@
 var checkArgument = require('conditional').checkArgument;
 
-const MAX_DEPOSIT = 100000.0;
+var MAX_DEPOSIT = 100000.0;
 
 function Account(options) {
     checkArgument(options.username.length > 6, "username cannot be less than 7 letters");

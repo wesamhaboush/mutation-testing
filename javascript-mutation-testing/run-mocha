@@ -2,4 +2,3 @@
 
 mocha -r blanket -R spec > reports/coverage.text
 mocha -r blanket -R html-cov > reports/coverage.html
-#istanbul cover _mocha -- -u exports -R spec test/**/*
