@@ -56,7 +56,7 @@ var hotel = function (roomCount) {
         var reservation = _.find(reservations, hasNumber(reservationNumber));
         checkArgument(reservation !== undefined, "reservation not found");
         reservations = _.reject(reservations, hasNumber(reservationNumber));
-        availableRooms.push(Room(reservation.roomNumber));
+        availableRooms.push(room(reservation.roomNumber));
     };
 
     return Object.freeze({

@@ -4,7 +4,7 @@
   "description": "trying mutation testing with javascript",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha --require blanket --reporter html-cov > coverage.html"
   },
   "config": {
     "blanket": {
