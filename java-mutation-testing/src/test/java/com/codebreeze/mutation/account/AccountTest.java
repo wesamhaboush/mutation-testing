@@ -1,6 +1,5 @@
 package com.codebreeze.mutation.account;
 
-import com.codebreeze.mutation.account.Account;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -29,9 +28,15 @@ public class AccountTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void should_not_be_able_to_create_account_with_little_money(){
+    public void should_not_be_able_to_create_account_with_little_money_min(){
         new Account("willbe7", 5.0);
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void should_not_be_able_to_create_account_with_little_money_less_than_minimum(){
+        new Account("willbe7", 4.0);
+    }
+
 
     @Test(expected = IllegalArgumentException.class)
     public void should_not_be_able_to_deposit_more_than_max(){
@@ -63,6 +68,8 @@ public class AccountTest {
         account.withdraw(9.0);
 
         assertEquals(0.0, account.getBalance(), 0.01);
+        // this duplication of assert protects against increment between increments (object stability?)
+        assertEquals(0.0, account.getBalance(), 0.01);
     }
 
     @Test
@@ -73,5 +80,13 @@ public class AccountTest {
         assertEquals(2.0, account.getBalance(), 0.01);
     }
 
+    // if you remove this one, the modulus operator survives as replacement of subtraction in withdraw method :)
+    // I totally missed that before running mutation testing. I thought the above test covered me.
+    @Test
+    public void should_be_able_to_withdraw_less_than_balance2(){
+        final Account account = new Account("happy puppy", 19.0);
+        account.withdraw(7.0);
 
+        assertEquals(12.0, account.getBalance(), 0.01);
+    }
 }

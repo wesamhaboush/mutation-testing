@@ -8,16 +8,16 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 
+import static com.codebreeze.mutation.hotel.HotelTest.DoesNotFail.doesNotFail;
 import static java.time.LocalDateTime.now;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.*;
-import static com.codebreeze.mutation.hotel.HotelTest.DoesNotFail.doesNotFail;
+import static org.junit.Assert.assertThat;
 
 public class HotelTest {
 
     @Test
-    public void can_make_a_reservation() throws Exception {
+    public void can_make_a_reservation() {
         //given
         final String roomNumber = "0";
         final int roomCount = 4;
@@ -36,7 +36,7 @@ public class HotelTest {
     }
 
     @Test
-    public void can_cancel_a_reservation() throws Exception {
+    public void can_cancel_a_reservation() {
         //given
         final int roomCount = 4;
         final Hotel hotel = new Hotel(roomCount);
@@ -53,11 +53,10 @@ public class HotelTest {
         final String roomNumber = "0";
         final LocalDateTime targetFrom = now().plusDays(2); // remember cannot reserve less than 24 hours from start time
         final LocalDateTime targetTo = targetFrom.plusDays(2);
-        final Reservation reservation = hotel.reserve(roomNumber, targetFrom, targetTo);
-        return reservation;
+        return hotel.reserve(roomNumber, targetFrom, targetTo);
     }
 
-    protected static class DoesNotFail extends TypeSafeMatcher<Runnable>{
+    protected static class DoesNotFail extends TypeSafeMatcher<Runnable> {
         private Exception exceptionCaught;
 
         @Override
@@ -65,7 +64,7 @@ public class HotelTest {
             try {
                 item.run();
                 return true;
-            }catch (Exception exception){
+            } catch (Exception exception) {
                 exceptionCaught = exception;
                 return false;
             }
@@ -77,7 +76,7 @@ public class HotelTest {
         }
 
         @Factory
-        public static  Matcher<Runnable> doesNotFail(){
+        public static Matcher<Runnable> doesNotFail() {
             return new DoesNotFail();
         }
     }

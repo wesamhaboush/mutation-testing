@@ -1,191 +1,266 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>com.codebreeze.mutation</groupId>
-  <artifactId>mutatation-testing</artifactId>
-  <version>1.0</version>
-  <dependencyManagement>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.codebreeze.mutation</groupId>
+    <artifactId>mutatation-testing</artifactId>
+    <version>1.0</version>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>1.7.12</version>
+            </dependency>
+            <dependency>
+                <groupId>org.mockito</groupId>
+                <artifactId>mockito-all</artifactId>
+                <version>1.9.5</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>4.12</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>commons-io</groupId>
+                <artifactId>commons-io</artifactId>
+                <version>2.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>3.4</version>
+            </dependency>
+            <dependency>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>18.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.functionaljava</groupId>
+                <artifactId>functionaljava</artifactId>
+                <version>4.4</version>
+            </dependency>
+            <dependency>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-collections4</artifactId>
+                <version>4.0</version>
+            </dependency>
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>3.3.0</version>
+                <scope>test</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>org.slf4j</groupId>
-        <artifactId>slf4j-log4j12</artifactId>
-        <version>1.7.12</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mockito</groupId>
-        <artifactId>mockito-all</artifactId>
-        <version>1.9.5</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.12</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <groupId>commons-io</groupId>
-        <artifactId>commons-io</artifactId>
-        <version>2.4</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-lang3</artifactId>
-        <version>3.4</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>18.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.functionaljava</groupId>
-        <artifactId>functionaljava</artifactId>
-        <version>4.4</version>
-      </dependency>
-      <dependency>
-        <groupId>org.apache.commons</groupId>
-        <artifactId>commons-collections4</artifactId>
-        <version>4.0</version>
-      </dependency>
-      <dependency>
-        <groupId>org.assertj</groupId>
-        <artifactId>assertj-core</artifactId>
-        <version>3.3.0</version>
-        <scope>test</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-  <dependencies>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-collections4</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.functionaljava</groupId>
-      <artifactId>functionaljava</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.slf4j</groupId>
-      <artifactId>slf4j-log4j12</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-all</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>commons-io</groupId>
-      <artifactId>commons-io</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.apache.commons</groupId>
-      <artifactId>commons-lang3</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.assertj</groupId>
-      <artifactId>assertj-core</artifactId>
-      <scope>test</scope>
-    </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.functionaljava</groupId>
+            <artifactId>functionaljava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <scope>test</scope>
+        </dependency>
 
-  </dependencies>
-  <build>
-    <pluginManagement>
-      <plugins>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.3</version>
-          <configuration>
-            <source>1.8</source>
-            <target>1.8</target>
-            <fork>true</fork>
-            <compilerArgs>
-              <compilerArg>-Xlint:all</compilerArg>
-            </compilerArgs>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.pitest</groupId>
-          <artifactId>pitest-maven</artifactId>
-          <version>1.1.9</version>
-          <executions>
-            <execution>
-              <id>run-mutation-testing</id>
-              <phase>test</phase>
-              <goals>
-                <goal>mutationCoverage</goal>
-              </goals>
-            </execution>
-          </executions>
-          <configuration>
-            <targetClasses>
-              <param>com.codebreeze.mutation.account*</param>
-            </targetClasses>
-            <targetTests>
-              <param>com.codebreeze.mutation.account*</param>
-            </targetTests>
-            <mutators>
-              <mutator>CONDITIONALS_BOUNDARY</mutator>
-              <mutator>CONSTRUCTOR_CALLS</mutator>
-              <mutator>INCREMENTS</mutator>
-              <mutator>INLINE_CONSTS</mutator>
-              <mutator>INVERT_NEGS</mutator>
-              <mutator>MATH</mutator>
-              <mutator>NEGATE_CONDITIONALS</mutator>
-              <mutator>NON_VOID_METHOD_CALLS</mutator>
-              <mutator>REMOVE_CONDITIONALS</mutator>
-              <mutator>RETURN_VALS</mutator>
-              <mutator>VOID_METHOD_CALLS</mutator>
-            </mutators>
-            <timestampedReports>false</timestampedReports>
-            <exportLineCoverage>true</exportLineCoverage>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.jacoco</groupId>
-          <artifactId>jacoco-maven-plugin</artifactId>
-          <version>0.7.5.201505241946</version>
-          <configuration>
-            <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
-            <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
-          </configuration>
-          <executions>
-            <execution>
-              <id>jacoco-initialize</id>
-              <goals>
-                <goal>prepare-agent</goal>
-              </goals>
-            </execution>
-            <execution>
-              <id>jacoco-site</id>
-              <phase>package</phase>
-              <goals>
-                <goal>report</goal>
-              </goals>
-            </execution>
-          </executions>
-        </plugin>
-      </plugins>
-    </pluginManagement>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
-      </plugin>
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-      </plugin>
-    </plugins>
-  </build>
+    </dependencies>
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <version>3.3</version>
+                    <configuration>
+                        <source>1.8</source>
+                        <target>1.8</target>
+                        <fork>true</fork>
+                        <compilerArgs>
+                            <compilerArg>-Xlint:all</compilerArg>
+                        </compilerArgs>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.pitest</groupId>
+                    <artifactId>pitest-maven</artifactId>
+                    <version>1.4.7</version>
+                    <executions>
+                        <execution>
+                            <id>run-mutation-testing</id>
+                            <phase>test</phase>
+                            <goals>
+                                <goal>mutationCoverage</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <targetClasses>
+                            <param>com.codebreeze.mutation.account*</param>
+                        </targetClasses>
+                        <targetTests>
+                            <param>com.codebreeze.mutation.account*</param>
+                        </targetTests>
+                        <mutators>
+                            <!-- Arithmetic Operator Negation: replace any use of a numeric variable with its negation -->
+                            <mutator>ABS</mutator>
+                            <!-- Arithmetic Operator Deletion: replaces an arithmetic operation with one of its members -->
+                            <mutator>AOD</mutator>
+                            <!-- Arithmetic Operator Replacement: replaces binary arithmetic operations for either integer
+                            or floating-point arithmetic with another operation -->
+                            <mutator>AOR</mutator>
+                            <!--
+                            replaces the relational operators <, <=, >, >= with their boundary counterpart as per the table below.
+                            <  to <=
+                            <= to <
+                            >  to >=
+                            >= to >
+                            -->
+                            <mutator>CONDITIONALS_BOUNDARY</mutator>
+                            <!--  replaces constructor calls with null values -->
+                            <mutator>CONSTRUCTOR_CALLS</mutator>
+                            <!-- Constant Replacement mutator mutates inline constants (numbers only here) -->
+                            <!--<mutator>CRCR</mutator>-->
+                            <!--
+                            Replaces return values with an ‘empty’ value for that type as follows:
+                            String -> “”
+                            Optional -> empty()
+                            List -> emptyList()
+                            Collection -> emptyList()
+                            Set -> emptySet()
+                            Integer -> 0
+                            Short -> 0
+                            Long -> 0
+                            Character -> 0
+                            Float -> 0
+                            Double -> 0
+                            -->
+                            <mutator>EMPTY_RETURNS</mutator>
+                            <!-- Replaces primitive and boxed boolean return values with false. -->
+                            <mutator>FALSE_RETURNS</mutator>
+                            <!-- replace increments with decrements and vice versa. -->
+                            <mutator>INCREMENTS</mutator>
+                            <!-- mutates inline constants. An inline constant is a literal value assigned to
+                            a non-final variable -->
+                            <mutator>INLINE_CONSTS</mutator>
+                            <!-- inverts negation of integer and floating point numbers. -->
+                            <mutator>INVERT_NEGS</mutator>
+                            <!--
+                            replaces binary arithmetic operations for either integer or floating-point
+                            arithmetic with another operation
+                            -->
+                            <mutator>MATH</mutator>
+                            <!--
+                            mutate all conditionals found according to the replacement table below:
+                            == to !=
+                            != to ==
+                            <= to >
+                            >= to <
+                            < to >=
+                            > to <=
+                            -->
+                            <mutator>NEGATE_CONDITIONALS</mutator>
+                            <!-- removes method calls to non void methods. Their return value is replaced
+                            by the Java Default Value for that specific type. -->
+                            <mutator>NON_VOID_METHOD_CALLS</mutator>
+                            <!-- Replaces return values with null. -->
+                            <mutator>NULL_RETURNS</mutator>
+                            <!-- Bit-wise Operator mutates bitwise and (&) and or (|)-->
+                            <mutator>OBBN</mutator>
+                            <!-- Replaces int, short, long, char, float and double return values with 0. -->
+                            <mutator>PRIMITIVE_RETURNS</mutator>
+                            <!-- remove all conditionals statements such that the guarded statements always execute -->
+                            <mutator>REMOVE_CONDITIONALS</mutator>
+                            <!-- removes local variable increments. -->
+                            <mutator>REMOVE_INCREMENTS</mutator>
+                            <!-- mutates the return values of method calls -->
+                            <mutator>RETURN_VALS</mutator>
+                            <!-- Relational Operator Replacement replaces a relational operator with another one. -->
+                            <mutator>ROR</mutator>
+                            <!-- Replaces primitive and boxed boolean return values with true. -->
+                            <mutator>TRUE_RETURNS</mutator>
+                            <!--  Unary Operator Insertion inserts a unary operator (increment or decrement)
+                            to a variable call -->
+                            <mutator>UOI</mutator>
+                            <!-- removes method calls to void methods. -->
+                            <mutator>VOID_METHOD_CALLS</mutator>
+                        </mutators>
+                        <timestampedReports>false</timestampedReports>
+                        <exportLineCoverage>true</exportLineCoverage>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.jacoco</groupId>
+                    <artifactId>jacoco-maven-plugin</artifactId>
+                    <version>0.8.3</version>
+                    <configuration>
+                        <destFile>${basedir}/target/coverage-reports/jacoco-unit.exec</destFile>
+                        <dataFile>${basedir}/target/coverage-reports/jacoco-unit.exec</dataFile>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <id>jacoco-initialize</id>
+                            <goals>
+                                <goal>prepare-agent</goal>
+                            </goals>
+                        </execution>
+                        <execution>
+                            <id>jacoco-site</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>report</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
